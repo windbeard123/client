@@ -41,7 +41,9 @@ export default class LoginFormWalletFile extends React.PureComponent {
 
     return (
       <form className={styles.loginForm} onSubmit={this.handleSubmit}>
-        <Button onClick={this.handleLoadWallet} disabled={disabled}>Select Wallet File</Button>
+        <Button onClick={this.handleLoadWallet} disabled={disabled}>
+          Select Wallet File
+        </Button>
 
         {this.renderAccounts()}
         {this.renderPassphraseInput()}
@@ -120,12 +122,14 @@ export default class LoginFormWalletFile extends React.PureComponent {
   handleSubmit = (event) => {
     event.preventDefault();
     const { encryptedWIF, passphrase, onLogin } = this.props;
-    const loginCredentials = wallet.isPrivateKey(encryptedWIF) ? {
-      wif: encryptedWIF
-    } : {
-      encryptedWIF,
-      passphrase
-    };
+    const loginCredentials = wallet.isPrivateKey(encryptedWIF)
+      ? {
+          wif: encryptedWIF
+        }
+      : {
+          encryptedWIF,
+          passphrase
+        };
 
     onLogin(loginCredentials);
   };
@@ -141,7 +145,7 @@ export default class LoginFormWalletFile extends React.PureComponent {
 
   getAccountItems = () => {
     return map(this.props.accounts, ({ label, encrypted }) => ({ label, value: encrypted }));
-  }
+  };
 
   isValid = () => {
     const { encryptedWIF, passphrase } = this.props;
@@ -163,5 +167,5 @@ export default class LoginFormWalletFile extends React.PureComponent {
     } catch (err) {
       showErrorToast(`Error loading wallet file: ${err.message}`);
     }
-  }
+  };
 }

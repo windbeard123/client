@@ -38,16 +38,11 @@ export default class AlertPresenter extends React.PureComponent {
       default:
         throw new Error(`Invalid dialog type: "${type}"`);
     }
-  }
+  };
 
   renderAlert = (props) => {
-    return (
-      <Alert
-        {...props}
-        onConfirm={this.handleClose(props.onConfirm)}
-      />
-    );
-  }
+    return <Alert {...props} onConfirm={this.handleClose(props.onConfirm)} />;
+  };
 
   renderConfirm = (props) => {
     return (
@@ -57,7 +52,7 @@ export default class AlertPresenter extends React.PureComponent {
         onCancel={this.handleClose(props.onCancel)}
       />
     );
-  }
+  };
 
   handleClose = (callback) => {
     return () => {
@@ -67,5 +62,5 @@ export default class AlertPresenter extends React.PureComponent {
 
       this.props.onClose();
     };
-  }
+  };
 }

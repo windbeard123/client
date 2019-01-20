@@ -17,21 +17,22 @@ import Send from './Send';
 const { LOADING, LOADED, FAILED } = progressValues;
 
 const mapSendActionsToProps = (actions, props) => ({
-  onSend: ({ asset, amount, receiver }) => actions.call({
-    net: props.net,
-    address: props.address,
-    wif: props.wif,
-    publicKey: props.publicKey,
-    signingFunction: props.signingFunction,
-    fee: props.fee,
-    asset,
-    amount,
-    receiver
-  })
+  onSend: ({ asset, amount, receiver }) =>
+    actions.call({
+      net: props.net,
+      address: props.address,
+      wif: props.wif,
+      publicKey: props.publicKey,
+      signingFunction: props.signingFunction,
+      fee: props.fee,
+      asset,
+      amount,
+      receiver
+    })
 });
 
 const mapFeeDataToProps = (fee) => ({ fee });
-const mapAuthDataToProps = (data) => (data);
+const mapAuthDataToProps = (data) => data;
 
 export default compose(
   withState('amount', 'setAmount', ''),
@@ -49,23 +50,40 @@ export default compose(
   withErrorToast(),
 
   withLoadingProp(sendActions, { propName: 'sending', strategy: pureStrategy }),
-  withProgressChange(sendActions, LOADING, (state, props) => {
-    if (props.signingFunction) {
-      props.showInfoToast('Please sign the transaction on your Ledger');
+  withProgressChange(
+    sendActions,
+    LOADING,
+    (state, props) => {
+      if (props.signingFunction) {
+        props.showInfoToast('Please sign the transaction on your Ledger');
+      }
+    },
+    {
+      strategy: pureStrategy
     }
-  }, {
-    strategy: pureStrategy
-  }),
-  withProgressChange(sendActions, LOADED, (state, props) => {
-    props.showSuccessToast('Transaction added to blockchain, account balances will update shortly');
-    props.setAmount('0');
-    props.setReceiver('');
-  }, {
-    strategy: pureStrategy
-  }),
-  withProgressChange(sendActions, FAILED, (state, props) => {
-    props.showErrorToast(`Transaction failed. ${state.error}`);
-  }, {
-    strategy: pureStrategy
-  })
+  ),
+  withProgressChange(
+    sendActions,
+    LOADED,
+    (state, props) => {
+      props.showSuccessToast(
+        'Transaction added to blockchain, account balances will update shortly'
+      );
+      props.setAmount('0');
+      props.setReceiver('');
+    },
+    {
+      strategy: pureStrategy
+    }
+  ),
+  withProgressChange(
+    sendActions,
+    FAILED,
+    (state, props) => {
+      props.showErrorToast(`Transaction failed. ${state.error}`);
+    },
+    {
+      strategy: pureStrategy
+    }
+  )
 )(Send);

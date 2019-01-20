@@ -49,9 +49,7 @@ export default class LoginFormLedger extends React.PureComponent {
   render() {
     return (
       <form className={styles.loginForm} onSubmit={this.handleLogin}>
-        <div>
-          {this.renderStatus()}
-        </div>
+        <div>{this.renderStatus()}</div>
 
         {this.renderActions()}
       </form>
@@ -61,16 +59,18 @@ export default class LoginFormLedger extends React.PureComponent {
   renderActions = () => {
     const disabled = this.props.disabled || this.props.progress !== LOADED;
 
-    return (
-      <LoginButton disabled={disabled} />
-    );
-  }
+    return <LoginButton disabled={disabled} />;
+  };
 
   renderStatus = () => {
     const { deviceError, deviceInfo, progress } = this.props;
 
     if (progress === LOADED) {
-      return <p>Connected to {deviceInfo.manufacturer} {deviceInfo.product}.</p>;
+      return (
+        <p>
+          Connected to {deviceInfo.manufacturer} {deviceInfo.product}.
+        </p>
+      );
     }
 
     if (progress === FAILED) {
@@ -78,12 +78,12 @@ export default class LoginFormLedger extends React.PureComponent {
     }
 
     return <p>Searching for USB devices. Please plug in your Ledger to login.</p>;
-  }
+  };
 
   handleLogin = (event) => {
     const { publicKey, onLogin } = this.props;
 
     event.preventDefault();
     onLogin({ publicKey });
-  }
+  };
 }

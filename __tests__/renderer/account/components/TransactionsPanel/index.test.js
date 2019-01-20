@@ -35,10 +35,9 @@ const defaultProps = {
 };
 
 const mountContainer = (props = {}) => {
-  return mount(provideStore(
-    <TransactionsPanel {...defaultProps} {...props} />,
-    createStore(initialState)
-  ));
+  return mount(
+    provideStore(<TransactionsPanel {...defaultProps} {...props} />, createStore(initialState))
+  );
 };
 
 describe('<TransactionsPanel />', () => {
@@ -50,7 +49,10 @@ describe('<TransactionsPanel />', () => {
 
   it('switches to the Receive tab', () => {
     const wrapper = mountContainer();
-    wrapper.find(IconTab).filterWhere((el) => el.text() === 'Receive').simulate('click');
+    wrapper
+      .find(IconTab)
+      .filterWhere((el) => el.text() === 'Receive')
+      .simulate('click');
     expect(wrapper.find(Send).exists()).toBe(false);
     expect(wrapper.find(Receive).exists()).toBe(true);
   });

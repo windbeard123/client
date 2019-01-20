@@ -9,7 +9,22 @@ import { identity } from 'lodash';
 import createRootReducer from '../reducers';
 
 export default function configureStore(history) {
-  const initialState = {};
+  const initialState = {
+    spunky: {
+      auth: {
+        batch: false,
+        progress: 'LOADED',
+        rollbackProgress: 'LOADED',
+        loadedCount: 1,
+        data: {
+          wif: 'KxDgvEKzgSBPPfuVfw67oPQBSjidEiqTHURKSDL1R7yGaGYAeYnr',
+          address: 'AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y'
+        },
+        error: null
+      }
+    }
+  };
+
   const sagaMiddleware = createSagaMiddleware();
 
   const middleware = [thunk, sagaMiddleware, routerMiddleware(history)];

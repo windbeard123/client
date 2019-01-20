@@ -14,10 +14,7 @@ const customSort = (balances, preferredOrder) => {
   return sortBy(balances, (token) => {
     const precidence = preferredOrder.findIndex((v) => v === token.scriptHash);
 
-    return [
-      precidence < 0 ? Infinity : precidence,
-      token.symbol
-    ];
+    return [precidence < 0 ? Infinity : precidence, token.symbol];
   });
 };
 

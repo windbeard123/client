@@ -17,7 +17,7 @@ export default class AccountDatum extends React.PureComponent {
 
   static defaultProps = {
     showInfoToast: noop
-  }
+  };
 
   render() {
     const { label, value } = this.props;
@@ -38,9 +38,7 @@ export default class AccountDatum extends React.PureComponent {
             </CopyToClipboard>
           </Tooltip>
         </div>
-        <div className={styles.value}>
-          {value}
-        </div>
+        <div className={styles.value}>{value}</div>
       </div>
     );
   }
@@ -48,5 +46,5 @@ export default class AccountDatum extends React.PureComponent {
   handleCopy = () => {
     const { showInfoToast, label } = this.props;
     showInfoToast(`${startCase(toLower(label))} copied to clipboard.`);
-  }
+  };
 }

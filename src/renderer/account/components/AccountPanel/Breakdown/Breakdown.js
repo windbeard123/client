@@ -33,11 +33,7 @@ export default class Breakdown extends React.PureComponent {
           currency={currency}
         />
         <div className={styles.chart}>
-          <BreakdownChart
-            balances={balances}
-            prices={prices}
-            currency={currency}
-          />
+          <BreakdownChart balances={balances} prices={prices} currency={currency} />
           {this.renderIcon()}
         </div>
       </div>
@@ -52,5 +48,5 @@ export default class Breakdown extends React.PureComponent {
     }
 
     return <TokenIcon className={styles.icon} {...token} />;
-  }
+  };
 }

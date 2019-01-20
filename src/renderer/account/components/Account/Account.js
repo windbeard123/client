@@ -21,11 +21,7 @@ export default function Account(props) {
           balances={values(balances)}
           prices={prices}
         />
-        <TransactionsPanel
-          className={styles.panel}
-          balances={balances}
-          prices={prices}
-        />
+        <TransactionsPanel className={styles.panel} balances={balances} prices={prices} />
       </Page>
     </div>
   );

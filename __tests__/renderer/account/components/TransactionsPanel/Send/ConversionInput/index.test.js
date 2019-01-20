@@ -25,10 +25,12 @@ const defaultProps = {
 };
 
 const mountContainer = (props = {}) => {
-  return mount(provideStore(
-    <ConversionInputContainer {...defaultProps} {...props} />,
-    createStore(initialState)
-  ));
+  return mount(
+    provideStore(
+      <ConversionInputContainer {...defaultProps} {...props} />,
+      createStore(initialState)
+    )
+  );
 };
 
 describe('<ConversionInput />', () => {

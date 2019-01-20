@@ -1,5 +1,11 @@
 import { compose } from 'recompose';
-import { withData, withActions, withProgressComponents, progressValues, alreadyLoadedStrategy } from 'spunky';
+import {
+  withData,
+  withActions,
+  withProgressComponents,
+  progressValues,
+  alreadyLoadedStrategy
+} from 'spunky';
 import { withRouter } from 'react-router-dom';
 import { map, difference } from 'lodash';
 
@@ -49,11 +55,15 @@ export default compose(
 
   // TODO: update spunky to permit combining actions without creating a batch, i.e.:
   //       withProgressComponents([currencyActions, currentNetworkActions], { ... })
-  ...([feeActions, currencyActions, currentNetworkActions, getAllNetworks].map((actions) => {
-    return withProgressComponents(actions, {
-      [LOADING]: Loading
-    }, {
-      strategy: alreadyLoadedStrategy
-    });
-  }))
+  ...[feeActions, currencyActions, currentNetworkActions, getAllNetworks].map((actions) => {
+    return withProgressComponents(
+      actions,
+      {
+        [LOADING]: Loading
+      },
+      {
+        strategy: alreadyLoadedStrategy
+      }
+    );
+  })
 )(App);

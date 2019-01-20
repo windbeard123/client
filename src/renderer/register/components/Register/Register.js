@@ -50,7 +50,7 @@ export default class Register extends React.PureComponent {
       default:
         throw new Error('Invalid tab.');
     }
-  }
+  };
 
   renderCreateTab = () => {
     const { account } = this.props;
@@ -60,9 +60,9 @@ export default class Register extends React.PureComponent {
     } else {
       return <RegisterForm />;
     }
-  }
+  };
 
   handleSelectTab = (tab) => {
     this.setState({ tab });
-  }
+  };
 }

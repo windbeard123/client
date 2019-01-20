@@ -22,10 +22,7 @@ export default function AccountPanel(props) {
           prices={prices}
           currency={currency}
         />
-        <AccountAddress
-          className={styles.address}
-          address={address}
-        />
+        <AccountAddress className={styles.address} address={address} />
       </div>
       <Holdings
         className={styles.holdings}

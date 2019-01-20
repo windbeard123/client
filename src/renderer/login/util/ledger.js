@@ -212,9 +212,8 @@ export const signWithLedger = async (unsignedTx, publicKey, acct = 0) => {
   const ledger = await NeonLedger.init();
 
   try {
-    const data = typeof unsignedTx !== 'string'
-      ? tx.serializeTransaction(unsignedTx, false)
-      : unsignedTx;
+    const data =
+      typeof unsignedTx !== 'string' ? tx.serializeTransaction(unsignedTx, false) : unsignedTx;
     const invocationScript = `40${await ledger.getSignature(data, acct)}`;
     const verificationScript = wallet.getVerificationScriptFromPublicKey(publicKey);
     const txObj = tx.deserializeTransaction(data);

@@ -44,16 +44,16 @@ export default class LoginFormPrivateKey extends React.PureComponent {
 
   handleChange = (event) => {
     this.props.setWIF(event.target.value);
-  }
+  };
 
   handleLogin = (event) => {
     const { wif, onLogin } = this.props;
 
     event.preventDefault();
     onLogin({ wif });
-  }
+  };
 
   isValid = () => {
     return this.props.wif !== '';
-  }
+  };
 }

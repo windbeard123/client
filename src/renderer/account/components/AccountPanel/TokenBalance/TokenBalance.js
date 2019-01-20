@@ -32,7 +32,7 @@ export default class TokenBalance extends React.PureComponent {
         {this.renderClaim()}
       </div>
     );
-  }
+  };
 
   renderToken = () => {
     const { token, price, currency } = this.props;
@@ -45,9 +45,7 @@ export default class TokenBalance extends React.PureComponent {
             {formatBalance(token.balance, token.decimals)} {token.symbol}
           </div>
           <div className={styles.currency}>
-            <span className={styles.tokenValue}>
-              {formatCurrency(price, currency)}
-            </span>
+            <span className={styles.tokenValue}>{formatCurrency(price, currency)}</span>
             <span className={styles.totalValue}>
               {formatCurrency(price * token.balance, currency)}
             </span>
@@ -55,7 +53,7 @@ export default class TokenBalance extends React.PureComponent {
         </div>
       </div>
     );
-  }
+  };
 
   renderClaim = () => {
     const { claimable, token } = this.props;
@@ -64,14 +62,8 @@ export default class TokenBalance extends React.PureComponent {
       return null;
     }
 
-    return (
-      <ClaimButton
-        className={styles.claim}
-        amount={claimable}
-        symbol={token.symbol}
-      />
-    );
-  }
+    return <ClaimButton className={styles.claim} amount={claimable} symbol={token.symbol} />;
+  };
 
   renderImage = () => {
     const { token } = this.props;
@@ -84,5 +76,5 @@ export default class TokenBalance extends React.PureComponent {
         scriptHash={token.scriptHash}
       />
     );
-  }
+  };
 }

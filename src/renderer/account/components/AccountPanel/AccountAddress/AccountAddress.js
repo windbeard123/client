@@ -13,8 +13,12 @@ export default function AccountAddress(props) {
       <div>Wallet Address</div>
       <div className={styles.address}>{props.address}</div>
       <ul className={styles.actions}>
-        <li className={styles.action}><CopyIcon /></li>
-        <li className={styles.action}><QRCodeIcon /></li>
+        <li className={styles.action}>
+          <CopyIcon />
+        </li>
+        <li className={styles.action}>
+          <QRCodeIcon />
+        </li>
       </ul>
     </div>
   );

@@ -60,30 +60,29 @@ export default class RegisterForm extends React.PureComponent {
             Register
           </PrimaryButton>
           <span className={styles.login}>
-            Already have an account?{' '}
-            <Link to="/login">Login</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </span>
         </div>
       </form>
     );
-  }
+  };
 
   handleChangePassphrase = (event) => {
     this.props.setPassphrase(event.target.value);
-  }
+  };
 
   handleChangePassphraseConfirmation = (event) => {
     this.props.setPassphraseConfirmation(event.target.value);
-  }
+  };
 
   handleRegister = (event) => {
     const { passphrase, passphraseConfirmation, onRegister } = this.props;
 
     event.preventDefault();
     onRegister({ passphrase, passphraseConfirmation });
-  }
+  };
 
   isValid = () => {
     return this.props.passphrase !== '' && this.props.passphraseConfirmation !== '';
-  }
+  };
 }

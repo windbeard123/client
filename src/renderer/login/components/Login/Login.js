@@ -67,9 +67,9 @@ export default class Login extends React.PureComponent {
       default:
         throw new Error('Invalid tab.');
     }
-  }
+  };
 
   handleSelectTab = (tab) => {
     this.setState({ tab });
-  }
+  };
 }

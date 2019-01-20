@@ -23,9 +23,7 @@ export default class GeneralSettings extends React.PureComponent {
   render() {
     return (
       <div className={styles.generalSettings}>
-        <SectionTitle renderIcon={GeneralIcon}>
-          General Settings
-        </SectionTitle>
+        <SectionTitle renderIcon={GeneralIcon}>General Settings</SectionTitle>
 
         <SectionContent>
           <LabeledSelect
@@ -53,9 +51,9 @@ export default class GeneralSettings extends React.PureComponent {
 
   handleChangeCurrency = (currency) => {
     this.props.setCurrency(currency);
-  }
+  };
 
   getCurrencyItems = () => {
     return map(CURRENCIES, (label, value) => ({ label: `${label} (${value})`, value }));
-  }
+  };
 }

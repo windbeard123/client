@@ -20,7 +20,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default compose(
-  connect(null, mapDispatchToProps),
+  connect(
+    null,
+    mapDispatchToProps
+  ),
   withActions(accountActions, mapAccountActionsToProps),
   withActions(blockActions, mapBlockActionsToProps),
   withLogout((state, { history }) => history.push('/login')),

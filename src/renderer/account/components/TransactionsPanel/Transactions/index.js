@@ -26,11 +26,12 @@ const { LOADING, FAILED } = progressValues;
 const mapAuthDataToProps = ({ address }) => ({ address });
 const mapTransactionHistoryDataToProps = (transactionHistory) => ({ transactionHistory });
 const mapTransactionHistoryActionsToProps = (actions, props) => ({
-  handleFetchAdditionalTxData: (previousCall) => actions.call({
-    net: props.net,
-    address: props.address,
-    previousCall
-  })
+  handleFetchAdditionalTxData: (previousCall) =>
+    actions.call({
+      net: props.net,
+      address: props.address,
+      previousCall
+    })
 });
 
 export default compose(

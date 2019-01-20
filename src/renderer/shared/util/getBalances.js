@@ -40,10 +40,15 @@ async function getTokenBalances(endpoint, address) {
   const tokens = await getTokens();
   const chunks = chunk(map(tokens, 'scriptHash'), CHUNK_SIZE);
 
-  const balances = extend({}, ...await Promise.all(chunks.map((scriptHashes) => {
-    const filteredTokens = filter(tokens, (token) => scriptHashes.includes(token.scriptHash));
-    return getRawTokenBalances(endpoint, filteredTokens, address);
-  })));
+  const balances = extend(
+    {},
+    ...(await Promise.all(
+      chunks.map((scriptHashes) => {
+        const filteredTokens = filter(tokens, (token) => scriptHashes.includes(token.scriptHash));
+        return getRawTokenBalances(endpoint, filteredTokens, address);
+      })
+    ))
+  );
 
   return mapValues(balances, (balance, scriptHash) => ({
     ...find(tokens, { scriptHash }),

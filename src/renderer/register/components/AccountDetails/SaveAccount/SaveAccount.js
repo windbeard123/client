@@ -14,9 +14,7 @@ import styles from './SaveAccount.scss';
 
 const writeFile = promisify(fs.writeFile);
 
-const FILE_FILTERS = [
-  { name: 'NEP6 Wallet File', extensions: ['json'] }
-];
+const FILE_FILTERS = [{ name: 'NEP6 Wallet File', extensions: ['json'] }];
 
 export default class SaveAccount extends React.PureComponent {
   static propTypes = {
@@ -64,7 +62,7 @@ export default class SaveAccount extends React.PureComponent {
 
   handleChangeLabel = (event) => {
     this.props.setLabel(event.target.value);
-  }
+  };
 
   handleAddToWallet = async () => {
     const { account, label } = this.props;
@@ -88,7 +86,7 @@ export default class SaveAccount extends React.PureComponent {
     const newAccount = new wallet.Account({ ...account, key: account.encryptedKey, label });
     walletLoaded.addAccount(newAccount);
     await this.save(filenames[0], walletLoaded);
-  }
+  };
 
   handleSaveNewWallet = async () => {
     const { label, account } = this.props;
@@ -111,7 +109,7 @@ export default class SaveAccount extends React.PureComponent {
     });
     const newWallet = new wallet.Wallet({ accounts: [newAccount] });
     await this.save(filename, newWallet);
-  }
+  };
 
   loadWallet = (filename) => {
     const { alert } = this.props;
@@ -122,7 +120,7 @@ export default class SaveAccount extends React.PureComponent {
       alert(`Error loading wallet file: ${err.message}`);
       return null;
     }
-  }
+  };
 
   save = async (filename, walletToSave) => {
     const { alert } = this.props;
@@ -138,5 +136,5 @@ export default class SaveAccount extends React.PureComponent {
     } catch (err) {
       alert(`Error saving wallet file: ${err.message}`);
     }
-  }
+  };
 }
